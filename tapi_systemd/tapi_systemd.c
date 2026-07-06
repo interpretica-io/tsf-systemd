@@ -156,7 +156,7 @@ apply_prop(tapi_systemd_hardening *h, const char *key, size_t klen,
 
 /* See description in tapi_systemd.h */
 te_errno
-tapi_systemd_hardening(rcf_rpc_server *rpcs, const char *unit,
+tapi_systemd_hardening_get(rcf_rpc_server *rpcs, const char *unit,
                        tapi_systemd_hardening *out)
 {
     te_string raw = TE_STRING_INIT;

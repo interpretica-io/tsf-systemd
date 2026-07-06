@@ -3,7 +3,7 @@
 /** @file
  * @brief What a service's systemd sandboxing is worth as a posture
  *
- * Reads each service's hardening with tapi_systemd_hardening() and
+ * Reads each service's hardening with tapi_systemd_hardening_get() and
  * classifies it into tsf-cybersec findings. Read-only.
  */
 
@@ -116,7 +116,7 @@ audit_one(rcf_rpc_server *rpcs, const char *unit,
           tapi_cybersec_report *report)
 {
     tapi_systemd_hardening h;
-    te_errno rc = tapi_systemd_hardening(rpcs, unit, &h);
+    te_errno rc = tapi_systemd_hardening_get(rpcs, unit, &h);
 
     if (rc != 0 && TE_RC_GET_ERROR(rc) == TE_ENOENT)
     {

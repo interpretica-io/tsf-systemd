@@ -14,7 +14,7 @@
  *
  * - tapi_systemd_list() snapshots every unit into a vector of
  *   #tapi_systemd_unit;
- * - tapi_systemd_hardening() reads one service's hardening properties
+ * - tapi_systemd_hardening_get() reads one service's hardening properties
  *   into a #tapi_systemd_hardening;
  * - @ref tapi_systemd_audit (tapi_systemd_audit.h) reads a set of
  *   services as a hardening posture through tsf-cybersec.
@@ -22,7 +22,7 @@
  * @code
  * tapi_systemd_hardening h;
  *
- * CHECK_RC(tapi_systemd_hardening(rpcs, "sshd.service", &h));
+ * CHECK_RC(tapi_systemd_hardening_get(rpcs, "sshd.service", &h));
  * RING("NoNewPrivileges=%d ProtectSystem=%s", h.no_new_privileges,
  *      h.protect_system != NULL ? h.protect_system : "?");
  * tapi_systemd_hardening_free(&h);
@@ -123,7 +123,7 @@ extern te_errno tapi_systemd_list(rcf_rpc_server *rpcs, te_vec *units);
  * @return Status code.
  * @retval TE_ENOENT    There is no such unit.
  */
-extern te_errno tapi_systemd_hardening(rcf_rpc_server *rpcs,
+extern te_errno tapi_systemd_hardening_get(rcf_rpc_server *rpcs,
                                        const char *unit,
                                        tapi_systemd_hardening *out);
 
